@@ -65,6 +65,10 @@ def hitung_biaya():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/')
+def home():
+    return send_from_statement(app.root_path, 'index.html')
+
 if __name__ == '__main__':
     
     app.run(debug=True, port=5000)
