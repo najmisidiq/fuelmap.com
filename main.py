@@ -4,7 +4,7 @@ import googlemaps
 from flask_cors import CORS
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='.')
 CORS(app)
 
 API_KEY = os.environ.get('MAPS_API_KEY')
