@@ -16,7 +16,7 @@ else:
 
 @app.route('/')
 def home():
-    return send_from_statement(app.root_path, 'index.html')
+    return send_from_directory(app.root_path, 'index.html')
 
 @app.route('/hitung-biaya', methods=['POST'])
 def hitung_biaya():
