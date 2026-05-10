@@ -1,12 +1,17 @@
+import os
 import googlemaps
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-
-API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'
-gmaps = googlemaps.Client(key=API_KEY)
+API_KEY = os.environ.get('MAPS_API_KEY')
+if not API_KEY:
+    print("Warning: MAPS_API_KEY tidak ditemukan!")
+    gmaps = None
+else:
+    gmaps = googlemaps.Client(key=API_KEY)
 
 @app.route('/hitung-biaya', methods=['POST'])
 def hitung_biaya():
