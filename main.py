@@ -1,7 +1,6 @@
+from flask import Flask, request, jsonify, send_from_directory
 import os
 import googlemaps
-send_from_statement
-from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 
@@ -14,6 +13,10 @@ if not API_KEY:
     gmaps = None
 else:
     gmaps = googlemaps.Client(key=API_KEY)
+
+@app.route('/')
+def home():
+    return send_from_statement(app.root_path, 'index.html')
 
 @app.route('/hitung-biaya', methods=['POST'])
 def hitung_biaya():
@@ -66,10 +69,6 @@ def hitung_biaya():
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-
-@app.route('/')
-def home():
-    return send_from_statement(app.root_path, 'index.html')
 
 if __name__ == '__main__':
     
